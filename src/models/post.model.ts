@@ -52,7 +52,8 @@ export let PostSchema: Schema = new Schema({
     default: Date.now(),
   },
   orgID: {
-    type: Schema.Types.ObjectId,
+    // type: Schema.Types.ObjectId,
+    type: String,
     required: true,
   },
 })

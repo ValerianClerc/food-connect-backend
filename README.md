@@ -1,5 +1,4 @@
-Typescript and Express.js 
-=========================
+# Typescript and Express.js
 
 An Express.js project implemented using Typescript with strongly typed objects:
 
@@ -8,49 +7,62 @@ An Express.js project implemented using Typescript with strongly typed objects:
 Clone the repository
 
 ```
-npm install 
+npm install
 ```
 
 For development:
+
 ```
 npm run dev
 ```
 
 To start:
+
 ```
 npm run start
 ```
 
 To debug in visual studio code:
+
 ```
 npm run debug
 ```
 
-Then run the `launch.json` configuration inside visual studio code `f5`.  You should now be able to set breakpoints in your typescript.
+Then run the `launch.json` configuration inside visual studio code `f5`. You should now be able to set breakpoints in your typescript.
 
 Test
+
 ```
 npm run test
 ```
 
 Test Watch
+
 ```
 npm run test:watch
 ```
 
 Build to `./dist`
+
 ```
 npm run build
 ```
 
 Browse to http://localhost:3000
 
+# Testing scripts
+
+### Create Post:
+
+```
+curl -X POST http://localhost:3000/posts -b cookie-file.txt -H 'Content-Type: application/json' -d '{"pickupAddress":"testAddress", "foodType":"Perishable", "consumable": true, "containerType":"Box", "allergenInfo": "Peanuts", "foodWeight":100, "foodValue":1000, "reasonForDonation":"Old", "pickupTime":"Midday", "foodInspected":true, "created": "2019-07-09", "orgID": "test_org_id"}'
+```
 
 # Folder structure
 
 ```
-|-- Dockerfile 
-|-- README.md 
+|-- Dockerfile
+|-- README.md
 |-- package.json
 |-- spec
 |   -- index.spec.ts
@@ -82,8 +94,6 @@ Run the image `docker-compose up`
 
 Open `http://localhost:8080`
 
-
 # License
 
 MIT - Do with as you like.
-
