@@ -14,6 +14,7 @@ export interface IPost extends Document {
   orgID: String
   created: Date
   expirationDate: String
+  foodDesc: String
 }
 
 export let PostSchema: Schema = new Schema({
@@ -57,6 +58,9 @@ export let PostSchema: Schema = new Schema({
     required: true,
   },
   expirationDate: {
+    type: String,
+  },
+  foodDesc: {
     type: String,
   },
 })

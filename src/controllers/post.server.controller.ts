@@ -18,6 +18,7 @@ export default class PostController {
       created: req.body.created,
       orgID: req.body.orgID,
       expirationDate: req.body.expirationDate,
+      foodDesc: req.body.foodDesc,
     })
       .then(newPost => {
         console.log(newPost)

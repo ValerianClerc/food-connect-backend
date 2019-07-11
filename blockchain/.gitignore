@@ -79,3 +79,4 @@ typings/
 # Compiled TypeScript files
 dist
 
+.DS_Store
