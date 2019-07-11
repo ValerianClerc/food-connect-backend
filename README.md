@@ -50,40 +50,96 @@ npm run build
 
 Browse to http://localhost:3000
 
+# Routes
+
+## Posts
+
+#### Get all posts
+
+`GET /posts/`
+
+#### Create a post
+
+`POST /posts/:id`
+
+request body:
+
+```json
+{
+  "pickupAddress": "testAddress",
+  "foodType": "Perishable",
+  "consumable": true,
+  "containerType": "Box",
+  "allergenInfo": "Peanuts",
+  "foodWeight": 100,
+  "foodValue": 1000,
+  "reasonForDonation": "Old",
+  "pickupTime": "Midday",
+  "foodInspected": true,
+  "created": "2019-07-09",
+  "orgID": "test_org_id"
+}
+```
+
+#### Get a post
+
+`GET /posts/:id`
+
+#### Update a post
+
+`PATCH /posts/:id`
+
+request body:
+
+```json
+{
+  "field to update": "new value",
+  "other field to update": "other new value"
+}
+```
+
+#### Delete a post
+
+`DELETE /posts/:id`
+
 # Testing scripts
 
 ### Create Post:
 
 ```
+
 curl -X POST http://localhost:3000/posts -b cookie-file.txt -H 'Content-Type: application/json' -d '{"pickupAddress":"testAddress", "foodType":"Perishable", "consumable": true, "containerType":"Box", "allergenInfo": "Peanuts", "foodWeight":100, "foodValue":1000, "reasonForDonation":"Old", "pickupTime":"Midday", "foodInspected":true, "created": "2019-07-09", "orgID": "test_org_id"}'
+
 ```
 
 # Folder structure
 
 ```
+
 |-- Dockerfile
 |-- README.md
 |-- package.json
 |-- spec
-|   -- index.spec.ts
+| -- index.spec.ts
 |-- src
-|   |-- config
-|   |   -- config.ts
-|   |   -- express.ts
-|   |-- controllers
-|   |   -- index.server.controller.ts
-|   |-- index.ts
-|   |-- public
-|   |   -- stylesheets
-|   |       -- style.css
-|   |-- routes
-|   |   -- index.server.route.ts
-|   |-- tsconfig.json
-|   -- views
-|       -- error.jade
-|       -- index.jade
-|       -- layout.jade
+| |-- config
+| | -- config.ts
+| | -- express.ts
+| |-- controllers
+| | -- index.server.controller.ts
+| |-- index.ts
+| |-- public
+| | -- stylesheets
+| | -- style.css
+| |-- routes
+| | -- index.server.route.ts
+| |-- tsconfig.json
+| -- views
+| -- error.jade
+| -- index.jade
+| -- layout.jade
 -- tsconfig.json
+
 ```
 
 # Docker
@@ -97,3 +153,7 @@ Open `http://localhost:8080`
 # License
 
 MIT - Do with as you like.
+
+```
+
+```
