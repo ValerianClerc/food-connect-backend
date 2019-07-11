@@ -12,6 +12,7 @@ export interface IRecipient extends Document {
   availableTimes: String
   typeOfFood: String
   wishlistBlacklist: String
+  charityID: String
 }
 
 export interface IUser extends Document {
@@ -23,7 +24,7 @@ export interface IUser extends Document {
   recipientID: String
 }
 
-export let UsersSchema: Schema = new Schema({
+export let UserSchema: Schema = new Schema({
   /* base schema */
   email: {
     type: String,
@@ -52,7 +53,7 @@ export let UsersSchema: Schema = new Schema({
   },
 })
 
-export const User: Model<IUser> = model<IUser>('User', UsersSchema)
+export const User: Model<IUser> = model<IUser>('User', UserSchema)
 
 const DonorSchema = new Schema({
   orgType: {
@@ -72,6 +73,7 @@ const RecipientSchema = new Schema({
   availableTimes: { type: String },
   typeOfFood: { type: String },
   wishlistBlacklist: { type: String },
+  charityID: { type: String },
 })
 
 export const Donor: Model<IDonor> = model<IDonor>('Donor', DonorSchema)

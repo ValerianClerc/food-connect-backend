@@ -5,7 +5,6 @@ export interface IPost extends Document {
   pickupAddress: String
   foodType: String
   consumable: Boolean
-  containerType: String
   allergenInfo: String
   foodWeight: Number
   foodValue: Number
@@ -14,6 +13,7 @@ export interface IPost extends Document {
   foodInspected: Boolean
   orgID: String
   created: Date
+  expirationDate: String
 }
 
 export let PostSchema: Schema = new Schema({
@@ -55,6 +55,9 @@ export let PostSchema: Schema = new Schema({
     // type: Schema.Types.ObjectId,
     type: String,
     required: true,
+  },
+  expirationDate: {
+    type: String,
   },
 })
 
