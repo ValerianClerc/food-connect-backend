@@ -26,6 +26,9 @@ export default function() {
         promiseLibrary: global.Promise,
         useMongoClient: true,
       })
+      .then(() => {
+        console.log('Successfully connected to mongo!')
+      })
       .catch(() => {
         console.log('Error connecting to mongo')
       })

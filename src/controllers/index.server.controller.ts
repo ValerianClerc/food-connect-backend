@@ -29,6 +29,8 @@ export default class IndexController {
     })(req, res, next)
   }
 
+  public signup(req: Request, res: Response, next: Function): void {}
+
   public authReq(req: Request, res: Response, next: Function): void {
     console.log('Inside GET /authrequired callback')
     console.log(`User authenticated? ${req.isAuthenticated()}`)

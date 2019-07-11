@@ -12,5 +12,6 @@ export default class IndexRoute {
     app.route('/msg').get(testFunc, indexController.msg)
     app.route('/login').post(indexController.login)
     app.route('/authrequired').get(indexController.authReq)
+    app.route('/signup').post(indexController.signup)
   }
 }
