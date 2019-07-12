@@ -1,6 +1,11 @@
-# Typescript and Express.js
+# Food Connect Backend
 
-An Express.js project implemented using Typescript with strongly typed objects:
+API + DB + Blockchain for Food-Connect
+
+# Blockchain
+
+Ask @Valerian on slack or Valerian.Clerc@ibm.com for IAM access to view IBM Blockchain cluster
+[link](https://4fdfc196ef17479680156b411295601d-optools.so01.blockchain.test.cloud.ibm.com)
 
 # Installation
 
