@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import * as passport from 'passport'
+import { User, Donor } from 'models/user.model'
 
 export default class IndexController {
   public index(req: Request, res: Response, next: Function): void {
@@ -29,7 +30,30 @@ export default class IndexController {
     })(req, res, next)
   }
 
-  public signup(req: Request, res: Response, next: Function): void {}
+  public signupdonor(req: Request, res: Response, next: Function): void {
+    Donor.create({
+      orgType: req.body.orgType,
+      commercialID: req.body.commercialID,
+      posts: [],
+    }).then(donor => {
+      User.create({
+        email: req.body.email,
+        password: req.body.password,
+        orgName: req.body.orgName,
+        address: req.body.address,
+        donorID: req.body.donorID,
+        recipientID: donor._id,
+      }).then(user => {
+        return res.status(200).json(user)
+      })
+    })
+  }
+
+  public signuprecipient(req: Request, res: Response, next: Function): void {
+    console.log(req.body)
+    if (req.body.donor) {
+    }
+  }
 
   public authReq(req: Request, res: Response, next: Function): void {
     console.log('Inside GET /authrequired callback')

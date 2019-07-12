@@ -4,7 +4,7 @@ import { IUser } from './user.model'
 export interface IPost extends Document {
   pickupAddress: String
   foodType: String
-  consumable: Boolean
+  consumable: String
   allergenInfo: String
   foodWeight: Number
   foodValue: Number
@@ -15,6 +15,8 @@ export interface IPost extends Document {
   created: Date
   expirationDate: String
   foodDesc: String
+  matched: String
+  accepted: Boolean
 }
 
 export let PostSchema: Schema = new Schema({
@@ -25,7 +27,7 @@ export let PostSchema: Schema = new Schema({
     type: String,
   },
   consumable: {
-    type: Boolean,
+    type: String,
   },
   containerType: {
     type: String,
@@ -62,6 +64,12 @@ export let PostSchema: Schema = new Schema({
   },
   foodDesc: {
     type: String,
+  },
+  matched: {
+    type: Schema.Types.ObjectId,
+  },
+  accepted: {
+    type: Boolean,
   },
 })
 

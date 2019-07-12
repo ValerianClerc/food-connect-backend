@@ -19,9 +19,12 @@ export default class PostController {
       orgID: req.body.orgID,
       expirationDate: req.body.expirationDate,
       foodDesc: req.body.foodDesc,
+      matched: req.body.matched,
+      accepted: req.body.accepted,
     })
       .then(newPost => {
         console.log(newPost)
+        // TODO: Add blockchain entry for "Posted"
         res.status(200).json(newPost)
       })
       .catch(err => {
@@ -63,6 +66,7 @@ export default class PostController {
     Post.findByIdAndUpdate(req.params.postID, req.body)
       .then(newPost => {
         console.log(newPost)
+        // TODO: blockchain entry for req.body.
         return res.status(200).json(newPost)
       })
       .catch(err => {

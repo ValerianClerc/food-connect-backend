@@ -52,6 +52,41 @@ Browse to http://localhost:3000
 
 # Routes
 
+## Users
+
+`POST /signupdonor`
+
+request body:
+
+```json
+{
+  "email": "test@test.com",
+  "password": "password",
+  "orgName": "my_org",
+  "address": "123 Some Street, Austin, TX",
+  "orgType": "Grocery Store",
+  "commercialID": "123abc",
+  "posts": []
+}
+```
+
+`POST /signuprecipient`
+
+```json
+{
+  "email": "test@test.com",
+  "password": "password",
+  "orgName": "my_org",
+  "address": "123 Some Street, Austin, TX",
+  "orgType": "Homeless Shelter",
+  "numberToFeed": 1000,
+  "availableTimes": "Midday",
+  "typeOfFood": "foodtype",
+  "wishlistBlacklist": "String",
+  "charityID": "String"
+}
+```
+
 ## Posts
 
 #### Get all posts
