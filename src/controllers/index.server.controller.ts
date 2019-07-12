@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import * as passport from 'passport'
-import { User, Donor } from '../models/user.model'
+import { User, Donor, Recipient } from '../models/user.model'
 
 export default class IndexController {
   public index(req: Request, res: Response, next: Function): void {
@@ -35,24 +35,77 @@ export default class IndexController {
       orgType: req.body.orgType,
       commercialID: req.body.commercialID,
       posts: [],
-    }).then(donor => {
-      User.create({
-        email: req.body.email,
-        password: req.body.password,
-        orgName: req.body.orgName,
-        address: req.body.address,
-        donorID: req.body.donorID,
-        recipientID: donor._id,
-      }).then(user => {
-        return res.status(200).json(user)
-      })
     })
+      .then(donor => {
+        User.create({
+          email: req.body.email,
+          password: req.body.password,
+          orgName: req.body.orgName,
+          address: req.body.address,
+          donorID: req.body.donorID,
+          recipientID: donor._id,
+        })
+          .then(user => {
+            return res.status(200).json(user)
+          })
+          .catch(err => {
+            return res.status(500).json({
+              error: 'internal error',
+            })
+          })
+      })
+      .catch(err => {
+        return res.status(500).json({
+          error: 'internal error',
+        })
+      })
   }
 
   public signuprecipient(req: Request, res: Response, next: Function): void {
     console.log(req.body)
-    if (req.body.donor) {
-    }
+    Recipient.create({
+      orgType: req.body.orgType,
+      numberToFeed: req.body.numberToFeed,
+      availableTimes: req.body.availableTimes,
+      typeOfFood: req.body.typeOfFood,
+      wishlistBlacklist: req.body.wishlistBlacklist,
+      charityID: req.body.charityID,
+    })
+      .then(recipient => {
+        User.create({
+          email: req.body.email,
+          password: req.body.password,
+          orgName: req.body.orgName,
+          address: req.body.address,
+          donorID: req.body.donorID,
+          recipientID: recipient._id,
+        })
+          .then(user => {
+            return res.status(200).json(user)
+          })
+          .catch(err => {
+            return res.status(500).json({
+              error: 'internal error',
+            })
+          })
+      })
+      .catch(err => {
+        return res.status(500).json({
+          error: 'internal error',
+        })
+      })
+  }
+
+  public getuser(req: Request, res: Response, next: Function): void {
+    User.findById(req.params.userID)
+      .then(user => {
+        return res.json(user)
+      })
+      .catch(err => {
+        return res.status(500).json({
+          error: 'internal error',
+        })
+      })
   }
 
   public getusers(req: Request, res: Response, next: Function): void {

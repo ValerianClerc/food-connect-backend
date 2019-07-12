@@ -15,5 +15,6 @@ export default class IndexRoute {
     app.route('/signupdonor').post(indexController.signupdonor)
     app.route('/signuprecipient').post(indexController.signuprecipient)
     app.route('/getusers').get(indexController.getusers)
+    app.route('/getuser/:userID').get(indexController.getuser)
   }
 }
