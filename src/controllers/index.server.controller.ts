@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import * as passport from 'passport'
-import { User, Donor } from 'models/user.model'
+import { User, Donor } from '../models/user.model'
 
 export default class IndexController {
   public index(req: Request, res: Response, next: Function): void {
@@ -53,6 +53,12 @@ export default class IndexController {
     console.log(req.body)
     if (req.body.donor) {
     }
+  }
+
+  public getusers(req: Request, res: Response, next: Function): void {
+    User.find({}).then(users => {
+      res.json(users)
+    })
   }
 
   public authReq(req: Request, res: Response, next: Function): void {
