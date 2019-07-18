@@ -1,14 +1,28 @@
 import { Request, Response } from 'express'
 import * as passport from 'passport'
 import { User, Donor, Recipient } from '../models/user.model'
+import { blockchain } from '../helpers/blockchainInteractions'
 
 export default class IndexController {
   public index(req: Request, res: Response, next: Function): void {
     res.render('index', { title: 'Express' })
   }
 
-  public msg(req: Request, res: Response): void {
-    res.json({ msg: 'Hello!', sessionID: req.sessionID })
+  public msg(req: Request, res: Response) {
+    blockchain
+      .getFood('my_id12345')
+      .then(resp => {
+        console.log(resp)
+        res.json({
+          msg: 'Hello!',
+          sessionID: req.sessionID,
+          blockchainResp: resp,
+        })
+      })
+      .catch(err => {
+        console.log(err)
+        res.status(500).send(err)
+      })
   }
 
   public login(req: Request, res: Response, next: Function): void {

@@ -12,3 +12,7 @@ bin
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 sessions/
+
+connection.json
+wallet/
+invoke.js
