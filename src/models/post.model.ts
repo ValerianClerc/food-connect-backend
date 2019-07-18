@@ -14,9 +14,8 @@ export interface IPost extends Document {
   orgID: String
   created: Date
   expirationDate: String
-  foodDesc: String
   matched: String
-  accepted: Boolean
+  status: String
 }
 
 export let PostSchema: Schema = new Schema({
@@ -62,14 +61,11 @@ export let PostSchema: Schema = new Schema({
   expirationDate: {
     type: String,
   },
-  foodDesc: {
-    type: String,
-  },
   matched: {
     type: Schema.Types.ObjectId,
   },
-  accepted: {
-    type: Boolean,
+  status: {
+    type: String,
   },
 })
 

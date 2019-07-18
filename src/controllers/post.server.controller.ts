@@ -3,6 +3,11 @@ import { Post } from '../models/post.model'
 import * as passport from 'passport'
 import { blockchain } from 'helpers/blockchainInteractions'
 
+const statusDonorPosted: string = 'Donor Inspected/Posted'
+const statusRecipientAccepted: string = 'Recipient Accepted'
+const statusFoodPickedUp: string = 'Food Picked Up'
+const statusRecipientInspected: string = 'Recipient Inspected'
+
 export default class PostController {
   public create(req: Request, res: Response, next: Function): void {
     console.log(req.body)
@@ -19,19 +24,17 @@ export default class PostController {
       created: req.body.created,
       orgID: req.body.orgID,
       expirationDate: req.body.expirationDate,
-      foodDesc: req.body.foodDesc,
       matched: req.body.matched,
-      accepted: req.body.accepted,
+      status: req.body.status,
     })
       .then(newPost => {
         console.log(newPost)
-        // TODO: Add blockchain entry for "Posted"
-        // blockchain.createFood(newPost._id)
+        blockchain.createFood(newPost._id, statusDonorPosted)
         res.status(200).json(newPost)
       })
       .catch(err => {
         console.log(err)
-        res.status(500).send('error: index route')
+        res.status(500).send('error: create route')
       })
   }
 
@@ -66,14 +69,45 @@ export default class PostController {
   public update(req: Request, res: Response, next: Function): void {
     console.log(req.params.postID)
     Post.findByIdAndUpdate(req.params.postID, req.body)
-      .then(newPost => {
-        console.log(newPost)
-        // TODO: blockchain entry for req.body.
-        return res.status(200).json(newPost)
+      .then(post => {
+        console.log(post)
+
+        let newStatus: string = ''
+
+        switch (post.status) {
+          case statusDonorPosted:
+            newStatus = statusDonorPosted
+            break
+          case statusRecipientAccepted:
+            newStatus = statusRecipientAccepted
+            break
+          case statusFoodPickedUp:
+            newStatus = statusFoodPickedUp
+            break
+          case statusRecipientInspected:
+            newStatus = statusRecipientInspected
+            break
+          default:
+            return res.status(400).json({
+              error: 'status field invalid',
+            })
+            break
+        }
+
+        blockchain
+          .updateFood(post._id, newStatus)
+          .then(resp => {
+            return res.status(200).json(post)
+          })
+          .catch(err => {
+            return res.status(500).json({
+              error: 'error updating blockchain entry',
+            })
+          })
       })
       .catch(err => {
         console.log(err)
-        return res.status(500).send('error: index route')
+        return res.status(500).send('error: update route')
       })
   }
 

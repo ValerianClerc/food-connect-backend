@@ -57,6 +57,13 @@ Browse to http://localhost:3000
 
 # Routes
 
+Constants for blockchain interactions (`status` field can be one of these):
+
+- `"Donor Inspected/Posted"`
+- `"Recipient Accepted"`
+- `"Food Picked Up"`
+- `"Recipient Inspected"`
+
 ## Users
 
 `POST /signupdonor`
@@ -117,7 +124,10 @@ request body:
   "pickupTime": "Midday",
   "foodInspected": true,
   "created": "2019-07-09",
-  "orgID": "test_org_id"
+  "orgID": "test_org_id",
+  "expirationDate": "2019-07-09",
+  "matched": "matched_users_id",
+  "status": "Donor Inspected/Posted"
 }
 ```
 
