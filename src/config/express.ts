@@ -10,6 +10,7 @@ import * as uuid from 'uuid'
 import * as passport from 'passport'
 import * as passportLocal from 'passport-local'
 import { TSNonNullExpression, TSTypeQuery } from 'babel-types'
+import * as cors from 'cors'
 const FileStore = require('session-file-store')(session)
 const LocalStrategy = require('passport-local').Strategy
 
@@ -37,6 +38,7 @@ export default function() {
   app.set('views', path.join(__dirname, '../../src/views'))
   app.set('view engine', 'pug')
 
+  app.use(cors())
   app.use(logger('dev'))
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: false }))

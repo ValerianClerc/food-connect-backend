@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { Post } from '../models/post.model'
 import * as passport from 'passport'
+import { blockchain } from 'helpers/blockchainInteractions'
 
 export default class PostController {
   public create(req: Request, res: Response, next: Function): void {
@@ -25,6 +26,7 @@ export default class PostController {
       .then(newPost => {
         console.log(newPost)
         // TODO: Add blockchain entry for "Posted"
+        // blockchain.createFood(newPost._id)
         res.status(200).json(newPost)
       })
       .catch(err => {
