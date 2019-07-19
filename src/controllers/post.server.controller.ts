@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { Post } from '../models/post.model'
 import * as passport from 'passport'
-import { blockchain } from 'helpers/blockchainInteractions'
+import { blockchain } from '../helpers/blockchainInteractions'
 
 const statusDonorPosted: string = 'Donor Inspected/Posted'
 const statusRecipientAccepted: string = 'Recipient Accepted'
@@ -91,7 +91,6 @@ export default class PostController {
             return res.status(400).json({
               error: 'status field invalid',
             })
-            break
         }
 
         blockchain
@@ -121,9 +120,20 @@ export default class PostController {
           })
         }
         console.log(post)
-        res.status(200).json({
-          success: true,
-        })
+        blockchain
+          .deleteFood(post._id)
+          .then(resp => {
+            console.log(resp)
+            return res.status(200).json({
+              success: true,
+            })
+          })
+          .catch(err => {
+            console.log(err)
+            return res.status(500).json({
+              error: 'blockchain transaction failed',
+            })
+          })
       })
       .catch(err => {
         console.log(err)

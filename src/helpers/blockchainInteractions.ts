@@ -40,7 +40,7 @@ export default class Blockchain {
 
       // Submit the 'createCar' transaction to the smart contract, and wait for it
       // to be committed to the ledger.
-      let resp = await contract.submitTransaction('readFood', id)
+      let resp = await contract.submitTransaction('readFood', id.toString())
       console.log('Transaction has been submitted')
       const respString = resp.toString()
       console.log(respString)
@@ -59,7 +59,11 @@ export default class Blockchain {
 
       // Submit the 'createCar' transaction to the smart contract, and wait for it
       // to be committed to the ledger.
-      let resp = await contract.submitTransaction('createFood', id, arg)
+      let resp = await contract.submitTransaction(
+        'createFood',
+        id.toString(),
+        arg.toString()
+      )
       console.log('Transaction has been submitted')
       const respString = resp.toString()
       console.log(respString)
@@ -78,7 +82,11 @@ export default class Blockchain {
 
       // Submit the 'createCar' transaction to the smart contract, and wait for it
       // to be committed to the ledger.
-      let resp = await contract.submitTransaction('updateFood', id, arg)
+      let resp = await contract.submitTransaction(
+        'updateFood',
+        id.toString(),
+        arg.toString()
+      )
       console.log('Transaction has been submitted')
       const respString = resp.toString()
       console.log(respString)
@@ -97,7 +105,7 @@ export default class Blockchain {
 
       // Submit the 'createCar' transaction to the smart contract, and wait for it
       // to be committed to the ledger.
-      let resp = await contract.submitTransaction('deleteFood', id)
+      let resp = await contract.submitTransaction('deleteFood', id.toString())
       console.log('Transaction has been submitted')
       const respString = resp.toString()
       console.log(respString)

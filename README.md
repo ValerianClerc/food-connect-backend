@@ -5,7 +5,7 @@ API + DB + Blockchain for Food-Connect
 # Blockchain
 
 Ask @Valerian on slack or Valerian.Clerc@ibm.com for IAM access to view IBM Blockchain cluster
-[link](https://4fdfc196ef17479680156b411295601d-optools.so01.blockchain.test.cloud.ibm.com)
+[link](https://77363b8329d745788134bce17e26fadc-optools.uss02.blockchain.cloud.ibm.com)
 
 # Installation
 
@@ -26,34 +26,6 @@ To start:
 ```
 npm run start
 ```
-
-To debug in visual studio code:
-
-```
-npm run debug
-```
-
-Then run the `launch.json` configuration inside visual studio code `f5`. You should now be able to set breakpoints in your typescript.
-
-Test
-
-```
-npm run test
-```
-
-Test Watch
-
-```
-npm run test:watch
-```
-
-Build to `./dist`
-
-```
-npm run build
-```
-
-Browse to http://localhost:3000
 
 # Routes
 
@@ -158,9 +130,39 @@ request body:
 
 ```
 
-curl -X POST http://localhost:3000/posts -b cookie-file.txt -H 'Content-Type: application/json' -d '{"pickupAddress":"testAddress", "foodType":"Perishable", "consumable": true, "containerType":"Box", "allergenInfo": "Peanuts", "foodWeight":100, "foodValue":1000, "reasonForDonation":"Old", "pickupTime":"Midday", "foodInspected":true, "created": "2019-07-09", "orgID": "test_org_id"}'
+curl -X POST http://localhost:3000/posts -b cookie-file.txt -H 'Content-Type: application/json' -d '{"pickupAddress":"testAddress", "foodType":"Perishable", "consumable": "Yes", "allergenInfo": "Peanuts", "foodWeight":100, "foodValue":1000, "reasonForDonation":"Old", "pickupTime":"Midday", "foodInspected":true, "created": "2019-07-09", "orgID": "test_org_id", "expirationDate":"2019-01-01", "matched":null, "status":"Donor Inspected/Posted"}'
 
 ```
+
+# Advanced dev usage
+
+To debug in visual studio code:
+
+```
+npm run debug
+```
+
+Then run the `launch.json` configuration inside visual studio code `f5`. You should now be able to set breakpoints in your typescript.
+
+Test
+
+```
+npm run test
+```
+
+Test Watch
+
+```
+npm run test:watch
+```
+
+Build to `./dist`
+
+```
+npm run build
+```
+
+Browse to http://localhost:3000
 
 # Folder structure
 
