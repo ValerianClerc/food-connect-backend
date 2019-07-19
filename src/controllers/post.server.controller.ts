@@ -68,7 +68,9 @@ export default class PostController {
 
   public update(req: Request, res: Response, next: Function): void {
     console.log(req.params.postID)
-    Post.findByIdAndUpdate(req.params.postID, req.body)
+    Post.findByIdAndUpdate(req.params.postID, {
+      status: req.body.status,
+    })
       .then(post => {
         console.log(post)
 
