@@ -28,7 +28,7 @@
     "cors": "^2.8.5",
     "cross-env": "^5.1.5",
     "debug": "^4.0.1",
-    "express": "^4.13.4",
+    "express": "^4.17.3",
     "express-session": "^1.16.2",
     "fabric-ca-client": "^1.4.4",
     "fabric-network": "^1.4.4",
